@@ -3,9 +3,9 @@ name: e2e
 on:
   push:
     branches-ignore:
-      - 'main'
+      - "main"
     tags-ignore:
-      - '*'
+      - "*"
 
 jobs:
   kubernetes:
@@ -28,7 +28,7 @@ jobs:
           --branch=${GITHUB_REF#refs/heads/}
           flux create kustomization flux-system \
           --source=flux-system \
-          --path=./clusters/staging
+          --path=./clusters/sandbox
       - name: Verify cluster reconciliation
         run: |
           kubectl -n flux-system wait kustomization/infrastructure --for=condition=ready --timeout=1m
